@@ -25,7 +25,7 @@ for i in file_list :
     for file in fileNameArr:
         if file + ".xlsx" in i:
             print(file + ".xlsx")
-            shutil.move(path + i, dir + i)
+            shutil.copy(path + i, dir + i)
             isSearched = True
 
 if isSearched is False :
