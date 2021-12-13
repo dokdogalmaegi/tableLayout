@@ -19,12 +19,25 @@ tableName = input('테이블 이름을 입력해주세요 : ').upper()
 
 fileNameArr = tableName.split(',')
 
+isPersent = False
+
+for idx, i in enumerate(fileNameArr, 0):
+    lastText = i.__len__() - 1
+
+    if i[lastText] is '%':
+        fileNameArr[idx] = i.split('%')[0]
+        isPersent = True
+
 file_list = os.listdir(path)
 
 for i in file_list :
     for file in fileNameArr:
-        if file + ".xlsx" in i:
-            print(file + ".xlsx")
+        if file in i and isPersent:
+            print(i)
+            shutil.copy(path + i, dir + i)
+            isSearched = True
+        elif file + ".xlsx" in i:
+            print(i)
             shutil.copy(path + i, dir + i)
             isSearched = True
 
